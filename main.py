@@ -37,7 +37,7 @@ def det (matrix):
         return matrix[0][0]
     else:
         for k in range(len(matrix[0])):
-            ans+= matrix[0][k]*det(minor(matrix, k))*(-1)**(1+k)
+            ans+= matrix[0][k]*det(minor(matrix, k))*(-1)**(2+k)
     return  ans
 matrix1 = enter_matrix()
 print(det(matrix1))
