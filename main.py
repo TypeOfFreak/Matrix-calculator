@@ -15,7 +15,29 @@ def matrix_addition(matrix1, matrix2):
         for x in range(len(matrix1[1])):
             matrix_done[y][x] = matrix1[y][x] + matrix2[y][x]
     return matrix_done
-matrix1 = [[1,2,3],[1,2,3],[1,2,3]]
-matrix2 = [[4,5,6],[4,5,6],[4,5,6]]
-
-print(matrix_addition(matrix1,matrix2))
+def matrix_multiplication(matrix1, matrix2):
+    m = len(matrix1)
+    n = len(matrix2[0])
+    p = len(matrix1[0])
+    matrix_result = [[0]*n for i in range(m)]
+    for i in range(m):
+        for j in range(n):
+            for k in range(p):
+                matrix_result[i][j] += matrix1[i][k]*matrix2[k][j]
+    return matrix_result
+def minor(matrix,k):
+    minor = matrix[1:]
+    for i in range(len(minor)):
+        minor[i] = minor[i][:k] + minor[i][k+1:]
+    print('             ', minor)
+    return minor
+def det (matrix):
+    ans = 0
+    if len(matrix[0]) == 1:
+        return matrix[0][0]
+    else:
+        for k in range(len(matrix[0])):
+            ans+= matrix[0][k]*det(minor(matrix, k))*(-1)**(1+k)
+    return  ans
+matrix1 = enter_matrix()
+print(det(matrix1))
